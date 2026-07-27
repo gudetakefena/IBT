@@ -6,7 +6,7 @@ print (coordinates[0])
 
 #dictionaries 
 profile ={
-"name":"henok",
+"name":"gudeta",
 "gender":"male",
 "maritual_status":"married",
 }
@@ -16,7 +16,7 @@ print(f"your name is with get function  {profile.get("name")} ")
 
 print(f"your name is with get function  {profile.get("age" , "not specified ")} ")
 
-profile["age"]="31"
+profile["age"]="29"
 print(f"your are {profile.get("age")} years old")
 
 del profile["age"]  #delete age from dictionary 

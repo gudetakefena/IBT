@@ -1,0 +1,54 @@
+clas BankAccount:
+    def __init__(self, owner, balance=0.0):
+        self.owner = owner
+        self.balance = balance
+
+    def deposit(self, amount):
+        if amount > 0:
+            self.balance += amount
+            print(f"Deposited ${amount:.2f}. New balance: ${self.balance:.2f}")
+
+    def withdraw(self, amount):
+        if 0 < amount <= self.balance:
+            self.balance -= amount
+            print(f"Withdrew ${amount:.2f}. New balance: ${self.balance:.2f}")
+        else:
+            print("Insufficient funds or invalid amount.")
+
+# SavingsAccount inherits all properties and methods from BankAccount
+class SavingsAccount(BankAccount):
+    def __init__(self, owner, balance=0.0, interest_rate=0.03):
+        # Call the parent class's __init__ method using super()
+        super().__init__(owner, balance)
+        self.interest_rate = interest_rate
+
+    def apply_interest(self):
+        # Calculates and adds interest based on inherited balance
+        interest_earned = self.balance * self.interest_rate
+        self.deposit(interest_earned)
+        print(f"Interest applied at {self.interest_rate*100}%.")
+
+# CheckingAccount inherits from BankAccount but overrides/adds its own rules
+class CheckingAccount(BankAccount):
+    def __init__(self, owner, balance=0.0, overdraft_limit=100.0):
+        super().__init__(owner, balance)
+        self.overdraft_limit = overdraft_limit
+
+    def withdraw(self, amount):
+        if amount > 0 and amount <= (self.balance + self.overdraft_limit):
+            self.balance -= amount
+            print(f"Withdrew ${amount:.2f}. New balance: ${self.balance:.2f}")
+        else:
+            print("Withdrawal exceeds balance and overdraft limit.")
+
+# --- Real-World Usage exmaple
+# 1. Create a Savings Account
+my_savings = SavingsAccount("Alice", 1000.0, interest_rate=0.05)
+my_savings.deposit(500.0)      # Uses inherited method
+my_savings.apply_interest()    # Uses SavingsAccount method
+
+print("-" * 30)
+
+# 2. Create a Checking Account example
+my_checking = CheckingAccount("Bob", 200.0, overdraft_limit=50.0)
+my_checking.withdraw(220.0)    # Uses overridden CheckingAccount method
