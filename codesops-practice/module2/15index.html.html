@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+<style>
+
+P/* 1. Reset default spacing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 2. Default Mobile Styles (Applied to screens smaller than 768px) */
+body {
+    font-family: sans-serif;
+    background-color: lab(96.19% 0.01 -0.01);
+}
+
+.container {
+    width: 100%;
+    padding: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.box {
+    width: 100%; /* Full width on mobile phones */
+    max-width: 400px; 
+    background-color: #007bff;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 40px 40px;
+    border-radius: 8px;
+    font-size: 1.5;
+
+}
+
+/* 3. Desktop Styles (Applied only to screens 768px and wider) */
+@media (min-width: 768px) {
+    .container {
+        padding: 50px;
+    }
+
+    .box {
+        width: 50%; /* Box shrinks to half width on larger screens */
+        background-color: #28a745; /* Changes color on desktop */
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="box">Phone</div>
+</div>
+
+</body>
+</html>
+<head>
+  <style>
+    .box {
+      transform: rotate(100%);
+    }
+  </style>
+</head>
+

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="box">Phone</div>
+</div
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f2f2f2;
+}
+
+.container {
+    width: 100%;
+    text-align: center;
+}
+
+.box {
+    width: 250px;
+    height: 150px;
+    margin: auto;
+    background: lightblue;
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Small (640px+) */
+@media (min-width: 640px) {
+    .box {
+        width: 350px;
+        background: lightgreen;
+    }
+
+    .box::before {
+        content: "Small Screen";
+    }
+
+    .box {
+        color: transparent;
+    }
+}
+
+/* Medium (768px+) */
+@media (min-width: 768px) {
+    .box {
+        width: 500px;
+        background: orange;
+    }
+
+    .box::before {
+        content: "Medium Screen";
+    }
+}
+
+/* Large (1024px+) */
+@media (min-width: 1024px) {
+    .box {
+        width: 700px;
+        background: tomato;
+    }
+
+    .box::before {
+        content: "Large Screen";
+    }
+}
+
+/* Extra Large (1280px+) */
+@media (min-width: 1280px) {
+    .box {
+        width: 900px;
+        background: purple;
+    }
+
+    .box::before {
+        content: "Extra Large Screen";
+    }
+}
+</body>
+</html>
