@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+
+// Step 1 & 2: Import functions from pricing.js
+import { withVat, format } from './pricing.js';
+
+// Mock data for the orders array to test the script
+const orders = [
+  {
+    id: "ORD001",
+    items: [
+      { name: "Injera", price: 20, qty: 5 },
+      { name: "Shiro", price: 150, qty: 2 }
+    ]
+  },
+  {
+    id: "ORD002",
+    items: [
+      { name: "Coffee Beans", price: 400, qty: 1 },
+      { name: "Berbere", price: 120, qty: 2 }
+    ]
+  },
+  {
+    id: "ORD003",
+    items: [
+      { name: "Teff (1kg)", price: 90, qty: 2 }
+    ]
+  }
+];
+
+// Step 3 & 4: Calculate subtotal using reduce (with destructuring) and map with spread
+const processedOrders = orders.map(order => {
+  // Use reduce to sum up items by destructuring price and qty directly
+  const subtotal = order.items.reduce((sum, { price, qty }) => {
+    return sum + (price * qty);
+  }, 0);
+
+  // Apply VAT to get the final order total
+  const finalTotal = withVat(subtotal);
+
+  // Spread the original order details and attach the new total field
+  return {
+    ...order,
+    total: finalTotal
+  };
+});
+
+// Step 5: Filter to list only orders where the total is strictly over 500 ETB
+const highValueOrders = processedOrders.filter(order => order.total > 500);
+
+// Step 6: Print a formatted summary and calculate the grand total
+console.log("=== ORDERS OVER 500 ETB ===");
+highValueOrders.forEach(order => {
+  console.log(Order ID: ${order.id} | Total: ${format(order.total)});
+});
+
+// Calculate the grand total of the filtered high-value orders
+const grandTotal = highValueOrders.reduce((sum, order) => sum + order.total, 0);
+
+console.log("===========================");
+console.log(Grand Total (High Value): ${format(grandTotal)});
